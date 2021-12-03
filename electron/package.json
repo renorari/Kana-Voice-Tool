@@ -1,0 +1,28 @@
+{
+  "name": "kana-voice-tool",
+  "version": "1.0.0",
+  "description": "Kanaの音声合成ツールです。",
+  "main": "index.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TarochanChannel/Kana-Voice-Tool.git"
+  },
+  "keywords": [
+    "Kana",
+    "Voice",
+    "Tool",
+    "Renorari"
+  ],
+  "author": "Renorari",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/TarochanChannel/Kana-Voice-Tool/issues"
+  },
+  "homepage": "https://github.com/TarochanChannel/Kana-Voice-Tool#readme",
+  "devDependencies": {
+    "electron": "^16.0.4"
+  }
+}

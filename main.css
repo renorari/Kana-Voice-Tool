@@ -9,7 +9,7 @@
     --bg: rgba(237, 237, 237, var(--opacity));
     --text: #121212;
     --shadow: rgba(0, 0, 0, calc(var(--opacity)/4));
-    --opacity: 0.8;
+    --opacity: 0.4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,7 +17,7 @@
         --bg: rgba(18, 18, 18, var(--opacity));
         --text: #ededed;
         --shadow: rgba(255, 255, 255, calc(var(--opacity)/4));
-        --opacity: 0.2;
+        --opacity: 0.32;
     }
 }
 

@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: #0f0f0f;
+}
+
+.background {
+    position: absolute;
+    z-index: -1000;
+}
+
+.cube {
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg);
+    animation: anime_cube 4s ease infinite;
+    --size: 25vw;
+    --color: #121212;
+    --color2: #1276ff;
+}
+
+@keyframes anime_cube {
+    0% {
+        transform: rotateX(-30deg) rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateX(-30deg) rotateY(720deg);
+    }
+}
+
+.cube div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.cube div span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(var(--color), var(--color2));
+    transform: rotateY(calc(90deg*var(--i))) translateZ(calc(var(--size)/2));
+}
+
+.top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--size);
+    height: var(--size);
+    background: var(--color);
+    transform: rotateX(90deg) translateZ(calc(var(--size)/2));
+}
+
+.top::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--size);
+    height: var(--size);
+    background: var(--color2);
+    transform: translateZ(calc(var(--size) - 2 * var(--size) - var(--size)/3));
+    filter: blur(calc(var(--size)/5));
+}

@@ -10,12 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/TarochanChannel/Kana-Voice-Tool.git"
   },
-  "keywords": [
-    "Kana",
-    "Voice",
-    "Tool",
-    "Renorari"
-  ],
   "author": "Renorari",
   "license": "Apache-2.0",
   "bugs": {

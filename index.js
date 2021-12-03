@@ -6,7 +6,7 @@ const createWindow = () => {
         "title": "Kana Voice",
         "width": screen.getPrimaryDisplay().size.width / 1.2,
         "height": screen.getPrimaryDisplay().size.height / 1.2,
-        "icon": "",
+        "icon": "icon.png",
         "backgroundColor": "#121212",
         "autoHideMenuBar": true,
         "webPreferences": {
@@ -17,7 +17,7 @@ const createWindow = () => {
     mainWindow.setMenu(null);
     mainWindow.loadFile("index.html");
 
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {

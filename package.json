@@ -4,7 +4,17 @@
   "description": "Kanaの音声合成ツールです。",
   "main": "index.js",
   "scripts": {
-    "test": "electron ."
+    "test": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "renorari.kana.voice",
+    "productName": "Kana Voice Tool",
+    "icon": "icon.png",
+    "copyright": "(c) 2021 れのらり",
+    "win": {
+      "icon": "icon.ico"
+    }
   },
   "repository": {
     "type": "git",
@@ -17,6 +27,7 @@
   },
   "homepage": "https://github.com/TarochanChannel/Kana-Voice-Tool#readme",
   "devDependencies": {
-    "electron": "^16.0.4"
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5"
   }
 }

@@ -67,6 +67,19 @@
     margin: 4px 0px;
 }
 
+#voice {
+    font-size: 0.5em;
+    top: 0;
+    left: 0;
+    margin: 8px;
+    padding: 0 4px;
+    background: var(--bg);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    box-shadow: 0 0 16px var(--shadow);
+    border: solid 1px var(--bg);
+}
+
 #login_container {
     display: flex;
     justify-content: center;
@@ -138,7 +151,8 @@
     border: solid 1px var(--bg);
 }
 
-input:focus,textarea:focus {
+input:focus,
+textarea:focus {
     border: unset;
     outline: 0;
 }

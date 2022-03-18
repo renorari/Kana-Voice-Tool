@@ -23,6 +23,7 @@ document.getElementById("play_btn").onclick = async () => {
         if (typeof data == "string") return alert(`エラーが発生しました。\n\nエラー: ${data}`);
         localStorage.setItem("login", JSON.stringify({ "id": document.getElementById("id").value, "password": document.getElementById("password").value }));
         localStorage.setItem("voice", document.getElementById("voice").value);
+        voice.pause();
         voice = new Audio(data[0]);
         voice.play();
     }).catch(error => {

@@ -48,6 +48,7 @@
     border-radius: 16px;
     box-shadow: 0 0 16px var(--shadow);
     border: solid 1px var(--bg);
+    user-select: none;
 }
 
 #menu {
@@ -61,6 +62,7 @@
     border-radius: 16px;
     box-shadow: 0 0 16px var(--shadow);
     border: solid 1px var(--bg);
+    user-select: none;
 }
 
 #menu span {

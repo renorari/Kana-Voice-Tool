@@ -3,7 +3,7 @@ const path = require("path");
 
 const createWindow = () => {
     const mainWindow = new BrowserWindow({
-        "title": "Kana Voice",
+        "title": "Kana Voice Tool",
         "width": screen.getPrimaryDisplay().size.width / 1.2,
         "height": screen.getPrimaryDisplay().size.height / 1.2,
         "icon": "icon.png",

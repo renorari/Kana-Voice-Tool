@@ -3,7 +3,6 @@ var wavesurfer = WaveSurfer.create({
 });
 
 document.getElementById("input").value = localStorage.getItem("text");
-
 if (localStorage.getItem("login")) {
     document.getElementById("id").value = JSON.parse(localStorage.getItem("login")).id;
     document.getElementById("password").value = JSON.parse(localStorage.getItem("login")).password;
@@ -96,4 +95,4 @@ document.onkeydown = (event) => {
     };
 
     localStorage.setItem("text", document.getElementById("input").value);
-}
+};

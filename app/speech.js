@@ -79,11 +79,19 @@ document.onkeydown = (event) => {
         return false;
     };
     if (event.key == ("Delete")) {
-        document.getElementById("stop_btn").onclick();
+        document.getElementById("play_btn").onclick();
         return false;
     };
     if (event.key == "F6") {
         document.getElementById("download_btn").onclick();
+        return false;
+    };
+    if (event.key == "ArrowLeft") {
+        document.getElementById("skipbackward_btn").onclick();
+        return false;
+    };
+    if (event.key == "ArrowRight") {
+        document.getElementById("skipforward_btn").onclick();
         return false;
     };
 

@@ -1,4 +1,6 @@
-var voice = new Audio();
+var wavesurfer = WaveSurfer.create({
+    container: "#waveform"
+});
 
 document.getElementById("input").value = localStorage.getItem("text");
 
@@ -17,29 +19,37 @@ fetch("https://kana.renorari.net/api/voice_list.json", { "method": "GET" }).then
     if (localStorage.getItem("voice")) document.getElementById("voice").value = localStorage.getItem("voice");
 });
 
-document.getElementById("play_btn").onclick = async () => {
+document.getElementById("play_btn").onclick = () => {
+    if (wavesurfer.isPlaying()) {
+        wavesurfer.pause();
+        document.getElementById("play_btn").innerHTML = "play_arrow";
+        return;
+    };
     document.getElementById("input").setAttribute("disabled", null);
+    document.getElementById("play_btn").innerHTML = "pause";
     fetch(`https://kana.renorari.net/api/voice`, { "method": "POST", "body": `text=${encodeURI(document.getElementById("input").value.replace(/\n/g, " "))}&id=${encodeURI(document.getElementById("id").value)}&password=${encodeURI(document.getElementById("password").value)}&voice=${document.getElementById("voice").value}` }).then((res) => {
-        if (res.status == 200) return [res.url];
+        if (res.status == 200) return res.blob();
         else return res.text();
     }).then((data) => {
         document.getElementById("input").removeAttribute("disabled");
-        if (typeof data == "string") return alert(`エラーが発生しました。\n\nエラー: ${data}`);
+        if (typeof data == "string") {
+            document.getElementById("play_btn").innerHTML = "play_arrow";
+            alert(`エラーが発生しました。\n\nエラー: ${data}`);
+            return;
+        };
         localStorage.setItem("login", JSON.stringify({ "id": document.getElementById("id").value, "password": document.getElementById("password").value }));
         localStorage.setItem("voice", document.getElementById("voice").value);
-        voice.pause();
-        voice = new Audio(data[0]);
-        voice.play();
+        wavesurfer.loadBlob(data);
+        wavesurfer.on('ready', () => wavesurfer.play());
+        wavesurfer.on("finish", () => document.getElementById("play_btn").innerHTML = "play_arrow");
     }).catch(error => {
         console.error(error);
         alert(`エラーが発生しました。\n\nエラー: ${error}`);
     });
 };
 
-document.getElementById("stop_btn").onclick = () => {
-    voice.pause();
-    document.getElementById("input").removeAttribute("disabled");
-};
+document.getElementById("skipbackward_btn").onclick = () => wavesurfer.skipBackward();
+document.getElementById("skipforward_btn").onclick = () => wavesurfer.skipForward();
 
 document.getElementById("download_btn").onclick = () => {
     fetch(`https://kana.renorari.net/api/voice`, { "method": "POST", "body": `text=${encodeURI(document.getElementById("input").value)}&id=${encodeURI(document.getElementById("id").value)}&password=${encodeURI(document.getElementById("password").value)}&voice=${document.getElementById("voice").value}` }).then((res) => {

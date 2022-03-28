@@ -1,7 +1,6 @@
 const { app, BrowserWindow, screen, Menu } = require("electron");
 const path = require("path");
 const openAboutWindow = require("about-window").default;
-const package = require("./package.json");
 
 const createWindow = () => {
     const mainWindow = new BrowserWindow({
@@ -18,17 +17,17 @@ const createWindow = () => {
 
     mainWindow.setMenu(Menu.buildFromTemplate([
         {
-            label: 'About ' + package.build.productName,
+            label: 'About Kana Voice Tool',
             click: () =>
                 openAboutWindow({
-                    icon_path: path.join(__dirname, package.build.icon),
-                    product_name: package.build.productName,
-                    bug_report_url: package.bugs.url,
+                    icon_path: path.join(__dirname, "icon.png"),
+                    product_name: "Kana Voice Tool",
+                    bug_report_url: "https://github.com/TarochanChannel/Kana-Voice-Tool/issues",
                     bug_link_text: "バグ報告",
-                    copyright: package.build.copyright,
-                    homepage: package.homepage,
-                    description: package.description+"\n利用を開始する前に、必ず利用規約をお読みください。\nhttps://kana.renorari.net/api/voice_license.md\n\n本ソフトウエアにはwavesurfer.jsが含まれています。\nwavesurfer.js by katspaugh is licensed under a BSD-3-Clause License.",
-                    license: package.license,
+                    copyright: "(c) 2021 れのらり",
+                    homepage: "https://github.com/TarochanChannel/Kana-Voice-Tool#readme",
+                    description: "Kanaの音声合成ツールです。\n利用を開始する前に、必ず利用規約をお読みください。\nhttps://kana.renorari.net/api/voice_license.md\n\n本ソフトウエアにはwavesurfer.jsが含まれています。\nwavesurfer.js by katspaugh is licensed under a BSD-3-Clause License.",
+                    license: "Apache-2.0",
                     win_options: {
                         parent: mainWindow,
                         modal: true

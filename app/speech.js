@@ -2,7 +2,11 @@ var wavesurfer = WaveSurfer.create({
     container: "#waveform"
 });
 
+document.getElementById("speed").oninput = () => document.getElementById("speed_value").innerHTML = document.getElementById("speed").value + "%";
+
 document.getElementById("input").value = localStorage.getItem("text");
+document.getElementById("speed").value = (localStorage.getItem("speed") || 100);
+document.getElementById("speed").oninput();
 if (localStorage.getItem("login")) {
     document.getElementById("id").value = JSON.parse(localStorage.getItem("login")).id;
     document.getElementById("password").value = JSON.parse(localStorage.getItem("login")).password;
@@ -26,7 +30,7 @@ document.getElementById("play_btn").onclick = () => {
     };
     document.getElementById("input").setAttribute("disabled", null);
     document.getElementById("play_btn").innerHTML = "pause";
-    fetch(`https://kana.renorari.net/api/voice`, { "method": "POST", "body": `text=${encodeURI(document.getElementById("input").value.replace(/\n/g, " "))}&id=${encodeURI(document.getElementById("id").value)}&password=${encodeURI(document.getElementById("password").value)}&voice=${document.getElementById("voice").value}` }).then((res) => {
+    fetch(`https://kana.renorari.net/api/voice`, { "method": "POST", "body": `text=${encodeURI(document.getElementById("input").value)}&id=${encodeURI(document.getElementById("id").value)}&password=${encodeURI(document.getElementById("password").value)}&voice=${document.getElementById("voice").value}&speed=${document.getElementById("speed").value / 100}` }).then((res) => {
         if (res.status == 200) return res.blob();
         else return res.text();
     }).then((data) => {
@@ -38,6 +42,7 @@ document.getElementById("play_btn").onclick = () => {
         };
         localStorage.setItem("login", JSON.stringify({ "id": document.getElementById("id").value, "password": document.getElementById("password").value }));
         localStorage.setItem("voice", document.getElementById("voice").value);
+        localStorage.setItem("speed", document.getElementById("speed").value)
         wavesurfer.loadBlob(data);
         wavesurfer.on('ready', () => wavesurfer.play());
         wavesurfer.on("finish", () => document.getElementById("play_btn").innerHTML = "play_arrow");
@@ -51,7 +56,7 @@ document.getElementById("skipbackward_btn").onclick = () => wavesurfer.skipBackw
 document.getElementById("skipforward_btn").onclick = () => wavesurfer.skipForward();
 
 document.getElementById("download_btn").onclick = () => {
-    fetch(`https://kana.renorari.net/api/voice`, { "method": "POST", "body": `text=${encodeURI(document.getElementById("input").value)}&id=${encodeURI(document.getElementById("id").value)}&password=${encodeURI(document.getElementById("password").value)}&voice=${document.getElementById("voice").value}` }).then((res) => {
+    fetch(`https://kana.renorari.net/api/voice`, { "method": "POST", "body": `text=${encodeURI(document.getElementById("input").value)}&id=${encodeURI(document.getElementById("id").value)}&password=${encodeURI(document.getElementById("password").value)}&voice=${document.getElementById("voice").value}&speed=${document.getElementById("speed").value / 100}` }).then((res) => {
         if (res.status == 200) return res.blob();
         else return res.text();
     }).then((data) => {
@@ -73,16 +78,17 @@ document.getElementById("download_btn").onclick = () => {
 };
 
 document.onkeydown = (event) => {
-    if (event.key == ("F5" || " ")) {
-        document.getElementById("play_btn").onclick();
-        return false;
-    };
-    if (event.key == ("Delete")) {
+    if (event.key == "F5") {
         document.getElementById("play_btn").onclick();
         return false;
     };
     if (event.key == "F6") {
         document.getElementById("download_btn").onclick();
+        return false;
+    };
+    if (document.activeElement.id == "input") return;
+    if (event.key == " ") {
+        document.getElementById("play_btn").onclick();
         return false;
     };
     if (event.key == "ArrowLeft") {

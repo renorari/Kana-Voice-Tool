@@ -24,19 +24,22 @@
     <div id="main">
         <div id="title">Kana Voice Tool</div>
         <div id="menu">
-            <span id="skipbackward_btn" class="btn material-icons-round">
-                skip_previous
-            </span>
-            <span id="play_btn" class="btn material-icons-round">
-                play_arrow
-            </span>
-            <span id="skipforward_btn" class="btn material-icons-round">
-                skip_next
-            </span>
-            <span id="download_btn" class="btn material-icons-round">
-                download
-            </span>
-            <br>
+            <div id="menu_first">
+                <span id="skipbackward_btn" class="btn material-icons-round">
+                    skip_previous
+                </span>
+                <span id="play_btn" class="btn material-icons-round">
+                    play_arrow
+                </span>
+                <span id="skipforward_btn" class="btn material-icons-round">
+                    skip_next
+                </span>
+                <span id="download_btn" class="btn material-icons-round">
+                    download
+                </span>
+                <input type="range" id="speed" name="speed" min="50" max="200" value="100" step="5">
+                <span id="speed_value">100%</span>
+            </div>
             <select id="voice"></select>
         </div>
         <div id="login_container">

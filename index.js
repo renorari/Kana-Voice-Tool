@@ -7,6 +7,8 @@ const createWindow = () => {
         "title": "Kana Voice Tool",
         "width": screen.getPrimaryDisplay().size.width / 1.2,
         "height": screen.getPrimaryDisplay().size.height / 1.2,
+        "minWidth": 360,
+        "minHeight": 480,
         "icon": "icon.png",
         "backgroundColor": "#121212",
         "autoHideMenuBar": true,
